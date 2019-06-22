@@ -62,6 +62,13 @@ export class CreateItem extends Component {
                                     required="required"
                                     icon="money"/>
 
+                                 <FormInput
+                                    type="text"
+                                    placeholder="Description"
+                                    name="Description"
+                                    required="required"
+                                    icon="tag"/>
+
                                 {button}
                             </Form>
                         </Grid.Column>
