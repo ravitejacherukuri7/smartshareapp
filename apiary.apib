@@ -3,78 +3,1132 @@ HOST: http://polls.apiblueprint.org/
 
 # smartshareapp
 
-Polls is a simple API allowing consumers to view polls and vote in them.
+## Register [/auth/register]
 
-## Questions Collection [/questions]
+### Register a new user [POST]
 
-### List All Questions [GET]
+Registers new user by getting the username, email and password.
+Email should be unique and password should be more than 6 characters.
+
++ Request (application/json)
+
+        {
+            "username": "User1",
+            "email": "user1@gmail.com",
+            "password": "password"
+        }
+        
++ Response 201 (application/json)
+
+        {
+             "message": "You were registered successfully. Please log in."
+        }
+
+## Login [/auth/login]
+
+### Log in a user [POST]
+
+Log in a registered user using their email and password
+On successful login a token is generated that is used to access other routes on the api.
+
++ Request (application/json)
+
+        {
+            "email": "user1@gmail.com",
+            "password": "password"
+        }
+        
++ Response 200 (application/json)
+
+        {
+            "access-token": "some_long_token_string",
+            "message": "You logged in successfully."
+        }
+        
+## Generate Password Reset Token [/auth/reset]
+
+### Generate password reset token [POST]
+
+Generate a password reset token by providing a registered email address.
+
++ Request (application/json)
+
+        {
+            "email": "user1@gmail.com"
+        }
+        
++ Response 200 (application/json)
+
+        {
+            "pass-reset-token": "some-long-token-string"
+        }
+        
+## Reset Password [/auth/password/{token}]
+
++ Parameters
+    + token (string) - Decoded string token generated from email
+
+### Reset password [PUT]
+
+Reset a registered user's password
+
++ Request (application/json)
+
+        {
+            "password": "pass123"
+        }
+        
++ Response 200 (application/json)
+
+        {
+            "message": "Password reset successfully. Please log in."
+        }
+        
+## User Operations [/users/{id}]
+
++ Parameters
+    + id (number) - The user id
+
+### Get user profile [GET]
+
++ Request (application/json)
+    + Headers
+    
+            x-access-token : "some-long-token-string"
+        
++ Response 200 (application/json)
+
+        {
+            "date_created": "Wed, 27 Sep 2017 15:39:45 GMT",
+            "date_modified": "Wed, 27 Sep 2017 15:39:45 GMT",
+            "email": "john@gmail.com",
+            "id": 10,
+            "username": "John"
+        }
+        
+### Update account details [PUT]
+
++ Request (application/json)
+    + Headers
+    
+            x-access-token : "some-long-token-string"
+        
++ Response 200 (application/json)
+
+        {
+            "date_created": "Tue, 03 Oct 2017 23:16:54 GMT",
+            "date_modified": "Tue, 03 Oct 2017 23:18:21 GMT",
+            "email": "wick2@gmail.com",
+            "username": "Wick 2"
+        }
+
+### Deactivate account [DELETE]
+
++ Request (application/json)
+    + Headers
+    
+            x-access-token : "some-long-token-string"
+        
++ Response 200 (application/json)
+
+        {
+            "message": "Profile deleted successfully"
+        }
+        
+## User Search [/users?{q}]
+
++ Parameters
+    + q (string) - Username
+
+### Search for a user [GET]
+
++ Request (application/json)
+    + Headers
+    
+            x-access-token : "some-long-token-string"
+        
++ Response 200 (application/json)
+
+        [
+            {
+                "date_created": "Tue, 10 Oct 2017 14:39:54 GMT",
+                "date_modified": "Tue, 10 Oct 2017 14:39:54 GMT",
+                "username": "User1"
+            }
+        ]
+        
+## Admin Operations [/admin/users]
+
+### Get all users [GET]
+
++ Request (application/json)
+    + Headers
+    
+            x-access-token : "some-long-token-string"
+        
++ Response 200 (application/json)
+
+        [
+            {
+                "date_created": "Tue, 10 Oct 2017 14:47:10 GMT",
+                "date_modified": "Tue, 10 Oct 2017 15:17:13 GMT",
+                "email": "wick@gmail.com",
+                "id": 6,
+                "username": "Wick"
+            },
+            {
+                "date_created": "Wed, 11 Oct 2017 15:15:40 GMT",
+                "date_modified": "Wed, 11 Oct 2017 15:15:40 GMT",
+                "email": "john.com",
+                "id": 7,
+                "username": "John"
+            },
+            {
+                "date_created": "Tue, 10 Oct 2017 14:39:54 GMT",
+                "date_modified": "Tue, 10 Oct 2017 14:39:54 GMT",
+                "email": "user1@gmail.com",
+                "id": 3,
+                "username": "User1"
+            }
+        ]
+        
+## Admin Search [/admin/users?{q}]
+
++ Parameters
+    + q (string) - Username
+
+### Search for a user [GET]
+
++ Request (application/json)
+    + Headers
+    
+            x-access-token : "some-long-token-string"
+        
++ Response 200 (application/json)
+
+        [
+            {
+                "date_created": "Tue, 10 Oct 2017 14:39:54 GMT",
+                "date_modified": "Tue, 10 Oct 2017 14:39:54 GMT",
+                "email": "user1@gmail.com",
+                "id": 3,
+                "username": "User1"
+            }
+        ]
+        
+## Admin Paginated Users [/admin/users{?page,limit}]
+
++ Parameters
+    + page (number) - The current page of the results
+    + limit (number) - The number of results per page
+
+### Get paginated users [GET]
+
++ Request (application/json)
+    + Headers
+    
+            x-access-token : "some-long-token-string"
+        
++ Response 200 (application/json)
+
+        {
+            "total": 17,
+            "next_page": "/admin/users?page=3&limit=2",
+            "previous_page": "/admin/users?page=1&limit=2",
+            "users": [
+                {
+                    "date_created": "Tue, 10 Oct 2017 14:47:10 GMT",
+                    "date_modified": "Tue, 10 Oct 2017 15:17:13 GMT",
+                    "email": "wick@gmail.com",
+                    "id": 6,
+                    "username": "Wick"
+                },
+                {
+                    "date_created": "Wed, 11 Oct 2017 15:15:40 GMT",
+                    "date_modified": "Wed, 11 Oct 2017 15:15:40 GMT",
+                    "email": "john.com",
+                    "id": 7,
+                    "username": "John"
+                }
+            ]
+        }
+
+## Admin Manipulation Operations [/admin/users/{id}]
+
++ Parameters
+    + id (number) - The user id
+
+### Get a specific user [GET]
+
+A user with admin priviledges can get a specific user by providing their id.
+
++ Request (application/json)
+    + Headers
+    
+            x-access-token : "some-long-token-string"
+        
++ Response 200 (application/json)
+
+        [
+            {
+                "date_created": "Wed, 27 Sep 2017 15:39:35 GMT",
+                "date_modified": "Wed, 27 Sep 2017 15:39:35 GMT",
+                "email": "halle@gmail.com",
+                "id": 9,
+                "username": "Halle"
+            }
+        ]
+
+### Delete a specific user [DELETE]
+
+A user with admin priviledges can delete a specific user by providing their id.
+
++ Request (application/json)
+    + Headers
+    
+            x-access-token : "some-long-token-string"
+        
++ Response 200 (application/json)
+
+        {
+            "message": "User deleted successfully"
+        }
+
+## Shopping Lists [/shopping_lists]
+
+### Get all shoppling lists [GET]
+
+Get all shopping lists belonging to a particular user.
+
++ Request (application/json)
+    + Headers
+    
+            x-access-token : "some-long-token-string"
+            
 
 + Response 200 (application/json)
 
         [
             {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 2048
-                    }, {
-                        "choice": "Python",
-                        "votes": 1024
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 512
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 256
-                    }
-                ]
+                "date_created": "Wed, 27 Sep 2017 15:41:36 GMT",
+                "date_modified": "Wed, 27 Sep 2017 15:41:36 GMT",
+                "description": "The ultimate gaming list",
+                "id": 1,
+                "name": "Games"
+            },
+            {
+                "date_created": "Wed, 27 Sep 2017 15:41:51 GMT",
+                "date_modified": "Wed, 27 Sep 2017 15:41:51 GMT",
+                "description": "List description",
+                "id": 2,
+                "name": "List 2"
+            }
+        ]
+        
+### Create a shopping list [POST]
+
+Create a shopping list by providing a name and a description (optional).
+
++ Request (application/json)
+    + Headers
+    
+            x-access-token : "some-long-token-string"
+        
+    + Body
+    
+            {
+                "name": "List 4",
+                "description": "Some description"
+            }
+        
++ Response 201 (application/json)
+
+        {
+            "date_created": "Thu, 28 Sep 2017 22:07:40 GMT",
+            "date_modified": "Thu, 28 Sep 2017 22:07:40 GMT",
+            "description": "List description",
+            "id": 5,
+            "name": "List 4"
+        }
+        
+## Search Shopping Lists [/shopping_lists?{q}]
+
++ Parameters
+    + q (string) - Name of the shopping list
+
+### Search for shopping lists [GET]
+
+Search for shopping lists matching a given criteria
+
++ Request (application/json)
+    + Headers
+    
+            x-access-token : "some-long-token-string"
+        
++ Response 200 (application/json)
+
+        [
+            {
+                "date_created": "Wed, 27 Sep 2017 15:41:51 GMT",
+                "date_modified": "Wed, 27 Sep 2017 15:41:51 GMT",
+                "description": "List description",
+                "id": 2,
+                "name": "List 1"
+            },
+            {
+                "date_created": "Wed, 27 Sep 2017 15:41:55 GMT",
+                "date_modified": "Wed, 27 Sep 2017 15:41:55 GMT",
+                "description": "List description",
+                "id": 3,
+                "name": "List 2"
+            }
+        ]
+        
+## Get Paginated Shopping Lists [/shopping_lists{?page,limit}]
+
++ Parameters
+    + page (number) - The current page of the results
+    + limit (number) - The number of results per page
+
+### Get paginated shopping lists [GET]
+
++ Request (application/json)
+    + Headers
+    
+            x-access-token : "some-long-token-string"
+        
++ Response 200 (application/json)
+
+        {
+            "total": 11,
+            "next_page": "/shopping_lists?page=3&limit=2",
+            "previous_page": "/shopping_lists?page=1&limit=2",
+            "shopping_lists": [
+                {
+                    "date_created": "Mon, 20 Nov 2017 15:54:46 GMT",
+                    "date_modified": "Mon, 20 Nov 2017 15:54:46 GMT",
+                    "description": "List description",
+                    "id": 3,
+                    "name": "List 3"
+                },
+                {
+                    "date_created": "Mon, 20 Nov 2017 20:53:07 GMT",
+                    "date_modified": "Mon, 20 Nov 2017 20:53:07 GMT",
+                    "description": "",
+                    "id": 4,
+                    "name": "List 4"
+                }
+            ]
+        }
+        
+## Shopping List Manipulation [/shopping_lists/{list_id}]
+
++ Parameters
+    + list_id (number) - The id of the shopping list
+
+### Get a shopping list [GET]
+
+Get a specific shopping list
+
++ Request (application/json)
+    + Headers
+    
+            x-access-token : "some-long-token-string"
+        
++ Response 200 (application/json)
+
+        {
+            "date_created": "Thu, 28 Sep 2017 22:07:40 GMT",
+            "date_modified": "Thu, 28 Sep 2017 22:07:40 GMT",
+            "description": "List description",
+            "id": 5,
+            "name": "List 4"
+        }
+        
+### Edit a shopping list [PUT]
+
+Edit a specific shopping list
+
++ Request (application/json)
+    + Headers
+    
+            x-access-token : "some-long-token-string"
+            
+    + Body
+    
+            {
+                "name": "List 5",
+                "description": "Some description updated"
+            }
+        
++ Response 200 (application/json)
+
+        {
+            "date_created": "Thu, 28 Sep 2017 22:07:40 GMT",
+            "date_modified": "Thu, 28 Sep 2017 22:10:40 GMT",
+            "description": "List description updated",
+            "id": 5,
+            "name": "List 5"
+        }
+        
+### Delete a shopping list [DELETE]
+
+Delete a specific shopping list
+
++ Request (application/json)
+    + Headers
+    
+            x-access-token : "some-long-token-string"
+        
++ Response 200 (application/json)
+
+        {
+            "message": "Shopping list 5 deleted successfully" 
+        }
+        
+## Shopping List Items [/shopping_lists/{list_id}/items]
+
++ Parameters
+    + list_id (number) - The id of the shopping list
+
+### Get all shoppling list items [GET]
+
+Get all the items belonging to a particular shopping list.
+
++ Request (application/json)
+    + Headers
+    
+            x-access-token : "some-long-token-string"
+            
+
++ Response 200 (application/json)
+
+        [
+            {
+                "date_created": "Wed, 27 Sep 2017 15:42:25 GMT",
+                "date_modified": "Wed, 27 Sep 2017 15:42:25 GMT",
+                "id": 1,
+                "name": "God of War",
+                "quantity": 1,
+                "unit_price": 5500
+            },
+            {
+                "date_created": "Wed, 27 Sep 2017 15:42:32 GMT",
+                "date_modified": "Wed, 27 Sep 2017 15:42:32 GMT",
+                "id": 2,
+                "name": "Item 1",
+                "quantity": 1,
+                "unit_price": 5500
+            }
+        ]
+        
+### Create a shopping list item [POST]
+
+Create a shopping list item.
+
++ Request (application/json)
+    + Headers
+    
+            x-access-token : "some-long-token-string"
+        
+    + Body
+    
+            {
+                "name": "Deadpool",
+                "quantity": 1,
+                "unit_price": 5500
+            }
+        
++ Response 201 (application/json)
+
+        {
+            "date_created": "Fri, 29 Sep 2017 00:08:36 GMT",
+            "date_modified": "Fri, 29 Sep 2017 00:08:36 GMT",
+            "id": 5,
+            "name": "Deadpool",
+            "quantity": 1,
+            "unit_price": 5500
+        }
+        
+## Search Shopping List Items [/shopping_lists/{list_id}/items{?q}]
+
++ Parameters
+    + list_id (number) - The id of the shopping list
+    + q (string) - Name of the shopping list item
+
+### Search for shopping list items [GET]
+
+Search for shopping list items matching a given criteria
+
++ Request (application/json)
+    + Headers
+    
+            x-access-token : "some-long-token-string"
+        
++ Response 200 (application/json)
+
+        [
+            {
+                "date_created": "Wed, 27 Sep 2017 15:42:32 GMT",
+                "date_modified": "Wed, 27 Sep 2017 15:42:32 GMT",
+                "id": 2,
+                "name": "Item 1",
+                "quantity": 1,
+                "unit_price": 5500
+            },
+            {
+                "date_created": "Wed, 27 Sep 2017 15:42:36 GMT",
+                "date_modified": "Wed, 27 Sep 2017 15:42:36 GMT",
+                "id": 3,
+                "name": "Item 2",
+                "quantity": 1,
+                "unit_price": 5500
+            }
+        ]
+        
+## Get Paginated Shopping List Items [/shopping_lists/{list_id}/items{?page,limit}]
+
++ Parameters
+    + page (number) - The current page of the results
+    + limit (number) - The number of results per page
+
+### Get paginated shopping list items [GET]
+
++ Request (application/json)
+    + Headers
+    
+            x-access-token : "some-long-token-string"
+        
++ Response 200 (application/json)
+
+        {
+            "total": 19,
+            "next_page": "/shopping_lists/<list_id>/items?page=3&limit=2",
+            "previous_page": "/shopping_lists/<list_id>/items?page=1&limit=2",
+            "shopping_list_items": [
+                {
+                    "date_created": "Thu, 23 Nov 2017 10:02:22 GMT",
+                    "date_modified": "Thu, 23 Nov 2017 10:02:22 GMT",
+                    "id": 3,
+                    "name": "Item 3",
+                    "quantity": 1,
+                    "unit_price": 5500
+                },
+                {
+                    "date_created": "Thu, 23 Nov 2017 10:02:25 GMT",
+                    "date_modified": "Thu, 23 Nov 2017 10:02:25 GMT",
+                    "id": 4,
+                    "name": "Item 4",
+                    "quantity": 1,
+                    "unit_price": 5500
+                }
+            ]
+        }
+        
+## Shopping List Item Manipulation [/shopping_lists/{list_id}/items/{item_id}]
+
++ Parameters
+    + list_id (number) - The id of the shopping list
+    + item_id (number) - The id of the shopping list item
+
+### Get a shopping list item [GET]
+
+Get a specific shopping list item
+
++ Request (application/json)
+    + Headers
+    
+            x-access-token : "some-long-token-string"
+        
++ Response 200 (application/json)
+
+        {
+            "date_created": "Wed, 27 Sep 2017 15:42:25 GMT",
+            "date_modified": "Wed, 27 Sep 2017 15:42:25 GMT",
+            "id": 1,
+            "name": "God of War",
+            "quantity": 1,
+            "unit_price": 5500
+        }
+        
+### Edit a shopping list item [PUT]
+
+Edit a specific shopping list item
+
++ Request (application/json)
+    + Headers
+    
+            x-access-token : "some-long-token-string"
+            
+    + Body
+    
+            {
+                "name": "Bananas",
+                "quantity": 10,
+                "unit_price": 10
+            }
+        
++ Response 200 (application/json)
+
+        {
+            "date_created": "Wed, 27 Sep 2017 15:42:32 GMT",
+            "date_modified": "Fri, 29 Sep 2017 01:19:06 GMT",
+            "id": 2,
+            "name": "Bananas",
+            "quantity": 10,
+            "unit_price": 10
+        }
+        
+### Delete a shopping list item [DELETE]
+
+Delete a specific shopping list item
+
++ Request (application/json)
+    + Headers
+    
+            x-access-token : "some-long-token-string"
+        
++ Response 200 (application/json)
+
+        {
+            "message": "Item 4 deleted successfully"
+        }
+
+## Get All Users [/users]
+
+### Get a list of all users [GET]
+
++ Request (application/json)
+    + Headers
+    
+            x-access-token : "some-long-token-string"
+        
++ Response 200 (application/json)
+
+        [
+            {
+                "date_created": "Wed, 27 Sep 2017 15:39:35 GMT",
+                "date_modified": "Wed, 27 Sep 2017 15:39:35 GMT",
+                "email": "halle@gmail.com",
+                "id": 9,
+                "username": "Halle"
+            },
+            {
+                "date_created": "Wed, 27 Sep 2017 15:39:45 GMT",
+                "date_modified": "Wed, 27 Sep 2017 15:39:45 GMT",
+                "email": "john@gmail.com",
+                "id": 10,
+                "username": "John"
+            },
+            {
+                "date_created": "Wed, 27 Sep 2017 15:38:23 GMT",
+                "date_modified": "Wed, 27 Sep 2017 15:38:23 GMT",
+                "email": "kiara@gmail.com",
+                "id": 7,
+                "username": "Kiara"
+            }
+        ]
+        
+## Search Users [/users{?q}]
+
++ Parameters
+    + q (string) - Username of the user
+
+### Get a list of users matching a certain criteria [GET]
+
++ Request (application/json)
+    + Headers
+    
+            x-access-token : "some-long-token-string"
+        
++ Response 200 (application/json)
+
+        [
+            {
+                "date_created": "Wed, 27 Sep 2017 15:38:23 GMT",
+                "date_modified": "Wed, 27 Sep 2017 15:38:23 GMT",
+                "email": "kiara@gmail.com",
+                "id": 7,
+                "username": "Kiara"
+            }
+        ]
+        
+## Friend System [/friends]
+
+### Get all friends [GET]
+
+Get a list of users with whom the current user is friends with.
+
++ Request (application/json)
+    + Headers
+    
+            x-access-token : "some-long-token-string"
+        
++ Response 200 (application/json)
+
+        [
+            {
+                "email": "user1@gmail.com",
+                "username": "User1"
+            },
+            {
+                "email": "user2@gmail.com",
+                "username": "User2"
+            },
+            {
+                "email": "user3@gmail.com",
+                "username": "User3"
             }
         ]
 
-### Create a New Question [POST]
+### Send friend request [POST]
 
-You may create your own question using this action. It takes a JSON
-object containing a question and a collection of answers in the
-form of choices.
+Send a friend request to another user.
 
 + Request (application/json)
+    + Headers
+    
+            x-access-token : "some-long-token-string"
+        
++ Response 200 (application/json)
 
         {
-            "question": "Favourite programming language?",
-            "choices": [
-                "Swift",
-                "Python",
-                "Objective-C",
-                "Ruby"
+            "message": "Friend request sent"
+        }
+        
+## Paginate Friends [/friends{?page,limit}]
+
+### Retrieve paginated friends [GET]
+
++ Parameters
+    + page (number) - The current page of the results
+    + limit (number) - The number of results per page
+
++ Request (application/json)
+    + Headers
+    
+            x-access-token : "some-long-token-string"
+        
++ Response 200 (application/json)
+
+        {
+            "total": 7,
+            "next_page": "None",
+            "previous_page": "None",
+            "friends": [
+                {
+                    "email": "user2@gmail.com",
+                    "username": "User 2"
+                },
+                {
+                    "email": "user4@gmail.com",
+                    "username": "User 4"
+                }
+            ]
+        }
+        
+## Friend Manipulation [/friends/{friend_id}]
+
++ Parameters
+    + friend_id (number) - The user id
+
+### Accept friend request [PUT]
+
++ Request (application/json)
+    + Headers
+    
+            x-access-token : "some-long-token-string"
+        
++ Response 200 (application/json)
+
+        {
+            "message": "You are now friends"
+        }
+        
+### Remove friend [DELETE]
+
++ Request (application/json)
+    + Headers
+    
+            x-access-token : "some-long-token-string"
+        
++ Response 200 (application/json)
+
+        {
+            "message": "Friend deleted successfully"
+        }
+        
+## Get Friend Requests [/friends/requests]
+
+### Retrieve requests [GET]
+
++ Request (application/json)
+    + Headers
+    
+            x-access-token : "some-long-token-string"
+        
++ Response 200 (application/json)
+
+        [
+            {
+                "email": "user4@gmail.com",
+                "username": "User4"
+            }
+        ]
+        
+## Search Friend Requests [/friends/requests{?q}]
+
++ Parameters
+    + q (string) - Name of the user
+
+### Retrieve specific requests [GET]
+
++ Request (application/json)
+    + Headers
+    
+            x-access-token : "some-long-token-string"
+        
++ Response 200 (application/json)
+
+        [
+            {
+                "email": "user4@gmail.com",
+                "username": "User4"
+            }
+        ]
+        
+## Paginate Friend Requests [/friends/requests{?page,limit}]
+
+### Retrieve paginated requests [GET]
+
++ Parameters
+    + page (number) - The current page of the results
+    + limit (number) - The number of results per page
+
++ Request (application/json)
+    + Headers
+    
+            x-access-token : "some-long-token-string"
+        
++ Response 200 (application/json)
+
+        {
+            "total": 4,
+            "next_page": "None",
+            "previous_page": "None",
+            "friend_requests": [
+                {
+                    "email": "user1@gmail.com",
+                    "username": "User 1"
+                },
+                {
+                    "email": "user9@gmail.com",
+                    "username": "User 9"
+                }
             ]
         }
 
-+ Response 201 (application/json)
+## List Share System [/shopping_lists/share]
 
+### Get shared lists [GET]
+
+Get a list of lists that the user has shared or have been shared to the user.
+
++ Request (application/json)
     + Headers
+    
+            x-access-token : "some-long-token-string"
+        
++ Response 200 (application/json)
 
-            Location: /questions/2
-
-    + Body
-
+        [
             {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 0
-                    }, {
-                        "choice": "Python",
-                        "votes": 0
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 0
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 0
-                    }
-                ]
+                "id": 1,
+                "name": "Games"
+            },
+            {
+                "id": 2,
+                "name": "List 1"
             }
+        ]
+
+### Share a list [POST]
+
+Share a shopping list with a friend.
+
++ Request (application/json)
+    + Headers
+    
+            x-access-token : "some-long-token-string"
+        
++ Response 200 (application/json)
+
+        {
+            "message": "Shopping list shared successfully"
+        }
+        
+## Paginate Shared Shopping Lists [/shopping_lists/share{?page,limit}]
+
+### Retrieve paginated shopping lists [GET]
+
++ Parameters
+    + page (number) - The current page of the results
+    + limit (number) - The number of results per page
+
++ Request (application/json)
+    + Headers
+    
+            x-access-token : "some-long-token-string"
+        
++ Response 200 (application/json)
+
+        {
+            "total": 9,
+            "next_page": "None",
+            "previous_page": "None",
+            "shared_lists": [
+                {
+                    "id": 2,
+                    "name": "List 1",
+                    "description": "Some description",
+                    "date_created": "Thu, 07 Dec 2017 14:34:13 GMT",
+                    "date_modified": "Thu, 07 Dec 2017 14:34:13 GMT"
+                },
+                {
+                    "id": 5,
+                    "name": "List 2",
+                    "description": "Some description",
+                    "date_created": "Thu, 07 Dec 2017 14:34:13 GMT",
+                    "date_modified": "Thu, 07 Dec 2017 14:34:13 GMT"
+                }
+            ]
+        }
+
+## Shared Shopping Lists Manipulation [/shopping_lists/share/{list_id}]
+
++ Parameters
+    + list_id (number) - The id of the shared list
+
+### Stop sharing a list [DELETE]
+
++ Request (application/json)
+    + Headers
+    
+            x-access-token : "some-long-token-string"
+        
++ Response 200 (application/json)
+
+        {
+            "message": "List sharing stopped successfully"
+        }
+        
+## Shared Shopping List Items [/shopping_lists/share/{list_id}/items]
+
++ Parameters
+    + list_id (number) - The id of the shopping list
+
+### Get all shared shoppling list items [GET]
+
+Get all the items belonging to a particular shared shopping list.
+
++ Request (application/json)
+    + Headers
+    
+            x-access-token : "some-long-token-string"
+            
+
++ Response 200 (application/json)
+
+        [
+            {
+                "date_created": "Fri, 29 Sep 2017 10:43:23 GMT",
+                "date_modified": "Fri, 29 Sep 2017 10:43:23 GMT",
+                "id": 6,
+                "name": "Item 1",
+                "quantity": 1,
+                "unit_price": 5500
+            },
+            {
+                "date_created": "Fri, 29 Sep 2017 10:43:31 GMT",
+                "date_modified": "Fri, 29 Sep 2017 10:43:31 GMT",
+                "id": 7,
+                "name": "Item 2",
+                "quantity": 1,
+                "unit_price": 5500
+            }
+        ]
+        
+## Search Shared List Items [/shopping_lists/share/{list_id}/items{?q}]
+
++ Parameters
+    + list_id (number) - The id of the shared list
+    + q (string) - Name of the shopping list item
+
+### Search for shared shopping list items [GET]
+
+Search for shopping list items matching a given criteria
+
++ Request (application/json)
+    + Headers
+    
+            x-access-token : "some-long-token-string"
+        
++ Response 200 (application/json)
+
+        [
+            {
+                "date_created": "Fri, 29 Sep 2017 10:43:23 GMT",
+                "date_modified": "Fri, 29 Sep 2017 10:43:23 GMT",
+                "id": 6,
+                "name": "Item 1",
+                "quantity": 1,
+                "unit_price": 5500
+            },
+            {
+                "date_created": "Fri, 29 Sep 2017 10:43:31 GMT",
+                "date_modified": "Fri, 29 Sep 2017 10:43:31 GMT",
+                "id": 7,
+                "name": "Item 2",
+                "quantity": 1,
+                "unit_price": 5500
+            }
+        ]
+
+## Get Paginated Shared List Items [/shopping_lists/share/{list_id}/items{?page,limit}]
+
++ Parameters
+    + list_id (number) - The id of the shared list
+    + page (number) - The current page of the results
+    + limit (number) - The number of results per page
+
+### Get paginated shared list items [GET]
+
++ Request (application/json)
+    + Headers
+    
+            x-access-token : "some-long-token-string"
+        
++ Response 200 (application/json)
+
+        {
+            "total": 8,
+            "next_page": "None",
+            "previous_page": "None",
+            "shared_list_items": [
+                "date_created": "Fri, 29 Sep 2017 10:43:23 GMT",
+                "date_modified": "Fri, 29 Sep 2017 10:43:23 GMT",
+                "id": 6,
+                "name": "Item 1",
+                "quantity": 1,
+                "unit_price": 5500
+                },
+                {
+                    "date_created": "Fri, 29 Sep 2017 10:43:31 GMT",
+                    "date_modified": "Fri, 29 Sep 2017 10:43:31 GMT",
+                    "id": 7,
+                    "name": "Item 2",
+                    "quantity": 1,
+                    "unit_price": 5500
+                }
+            ]
+        }
