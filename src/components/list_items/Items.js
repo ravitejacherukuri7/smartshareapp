@@ -43,7 +43,7 @@ export class Items extends Component {
             <div className="content">
                 <Container>
                     <Segment basic>
-                        <Link to={`/shopping_lists/${activeList.id}/items/create`} className="ui button purple fluid">Create
+                        <Link to={`/shopping_lists/${activeList.id}/items/create`} className="ui button grey fluid">Create
                             Item</Link>
 
                         <h3>{activeList.name}</h3>
