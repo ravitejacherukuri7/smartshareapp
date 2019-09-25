@@ -25,7 +25,7 @@ export class ShoppingLists extends Component {
     componentDidMount() {
         const { getLists } = this.props;
         const { activePage, limit } = this.state;
-
+        
         getLists(activePage, limit);
     }
 
@@ -68,7 +68,7 @@ export class ShoppingLists extends Component {
                             activePage={activePage}
                             itemsCountPerPage={limit}
                             totalItemsCount={shoppingLists.total}
-                            pageRangeDisplayed={5}
+                            pageRangeDisplayed={10}
                             onChange={this.handlePageChange}
                             innerClass="ui pagination menu"
                             itemClass="item"
@@ -82,7 +82,7 @@ export class ShoppingLists extends Component {
                 <Container>
                     <Segment basic>
                         <h1>Shopping Lists</h1>
-                        <Link to="/shopping_lists/create" className="ui button purple fluid">Create List</Link>
+                        <Link to="/shopping_lists/create" className="ui button grey fluid">Create List</Link>
                     </Segment>
 
                     <Segment basic>
