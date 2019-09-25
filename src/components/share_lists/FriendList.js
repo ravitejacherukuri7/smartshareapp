@@ -17,7 +17,7 @@ const FriendList = ({ friends, shareList }) => {
                     <Card.Content extra>
                         <form onSubmit={shareList}>
                             <input type="number" name="friend_id" defaultValue={friend.id} hidden disabled />
-                            <button type="submit" className="ui button blue fluid">Share</button>
+                            <button type="submit" className="ui button grey fluid">Share</button>
                         </form>
                     </Card.Content>
                 </Card>
