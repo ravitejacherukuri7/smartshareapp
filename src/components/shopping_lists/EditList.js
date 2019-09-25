@@ -46,9 +46,9 @@ export class EditList extends Component {
         let button = '';
 
         if (loading) {
-            button = <Button type="submit" disabled loading color="purple" className="fluid">Edit</Button>;
+            button = <Button type="submit" disabled loading color="grey" className="fluid">Edit</Button>;
         } else {
-            button = <Button type="submit" color="purple" className="fluid">Edit</Button>;
+            button = <Button type="submit" color="grey" className="fluid">Edit</Button>;
         }
 
         return(
