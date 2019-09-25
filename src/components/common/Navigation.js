@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom';
 export const Navigation = ({logout}) => {
     return (
         <div className="ui inverted huge borderless fluid menu">
-            <Link to="/dashboard" className="header item">Shopping List App</Link>
+            <Link to="/dashboard" className="header item">SmartShare</Link>
             <div className="right menu">
                 <div className="ui simple dropdown item">
                     <a className="item">Friends</a>
