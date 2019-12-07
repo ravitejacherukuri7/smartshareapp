@@ -12,7 +12,7 @@ const List = ({ shoppingLists, handleDelete }) => {
         <Item.Group>
             { _.map(shopping_lists, shoppingList =>
                 <Item key={shoppingList.id}>
-                    <Item.Image size="small" src={process.env.PUBLIC_URL + '/img/thumbs.jpg'} />
+                    <Item.Image size="small" src={process.env.PUBLIC_URL + '/img/thumb1.jpg'} />
 
                     <Item.Content>
                         <Item.Header>
