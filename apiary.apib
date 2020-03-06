@@ -1,7 +1,9 @@
 FORMAT: 1A
-HOST: https://smartsharereact.herokuapp.com/v1
+HOST: http://smartshareapp.herokuapp.com/
 
-# smartsharereact
+# smartshareapp
+
+
 
 This is a simple shopping list API that enables users to create and share shopping lists with other users. 
 It provides a ton of features that enable users to truly personalize their shopping experience.
@@ -102,11 +104,11 @@ Reset a registered user's password
 + Response 200 (application/json)
 
         {
-            "date_created": "Mon, 24 jun 2019 15:39:45 GMT",
-            "date_modified": "Mon, 24 jun 2019 15:39:45 GMT",
-            "email": "cherukuriraviteja7@gmail.com",
+            "date_created": "Wed, 27 Sep 2017 15:39:45 GMT",
+            "date_modified": "Wed, 27 Sep 2017 15:39:45 GMT",
+            "email": "john@gmail.com",
             "id": 10,
-            "username": "raviteja22"
+            "username": "John"
         }
         
 ### Update account details [PUT]
@@ -119,10 +121,10 @@ Reset a registered user's password
 + Response 200 (application/json)
 
         {
-            "date_created": "Mon, 24 jun 2019 23:16:54 GMT",
-            "date_modified": "Mon, 24 jun 2019 23:18:21 GMT",
-            "email": "ravitejacherukuri779@gmail.com",
-            "username": "raviteja"
+            "date_created": "Tue, 03 Oct 2017 23:16:54 GMT",
+            "date_modified": "Tue, 03 Oct 2017 23:18:21 GMT",
+            "email": "wick2@gmail.com",
+            "username": "Wick 2"
         }
 
 ### Deactivate account [DELETE]
@@ -154,8 +156,8 @@ Reset a registered user's password
 
         [
             {
-                "date_created": "Mon, 24 jun 2019 14:39:54 GMT",
-                "date_modified": "Mon, 24 jun 2019 14:39:54 GMT",
+                "date_created": "Tue, 10 Oct 2017 14:39:54 GMT",
+                "date_modified": "Tue, 10 Oct 2017 14:39:54 GMT",
                 "username": "User1"
             }
         ]
@@ -173,22 +175,22 @@ Reset a registered user's password
 
         [
             {
-                "date_created": "Mon, 24 jun 2019 14:47:10 GMT",
-                "date_modified": "Mon, 24 jun 2019 15:17:13 GMT",
+                "date_created": "Tue, 10 Oct 2017 14:47:10 GMT",
+                "date_modified": "Tue, 10 Oct 2017 15:17:13 GMT",
                 "email": "wick@gmail.com",
                 "id": 6,
                 "username": "Wick"
             },
             {
-                "date_created": "Mon, 24 jun 2019 15:15:40 GMT",
-                "date_modified": "Mon, 24 jun 2019 15:15:40 GMT",
-                "email": "cherukuriraviteja7@gmail.com",
+                "date_created": "Wed, 11 Oct 2017 15:15:40 GMT",
+                "date_modified": "Wed, 11 Oct 2017 15:15:40 GMT",
+                "email": "john.com",
                 "id": 7,
-                "username": "raviteja22"
+                "username": "John"
             },
             {
-                "date_created": "Mon, 24 jun 2019 14:39:54 GMT",
-                "date_modified": "Mon, 24 jun 2019 14:39:54 GMT",
+                "date_created": "Tue, 10 Oct 2017 14:39:54 GMT",
+                "date_modified": "Tue, 10 Oct 2017 14:39:54 GMT",
                 "email": "user1@gmail.com",
                 "id": 3,
                 "username": "User1"
@@ -211,8 +213,8 @@ Reset a registered user's password
 
         [
             {
-                "date_created": "Mon, 24 jun 2019 14:39:54 GMT",
-                "date_modified": "Mon, 24 jun 2019 14:39:54 GMT",
+                "date_created": "Tue, 10 Oct 2017 14:39:54 GMT",
+                "date_modified": "Tue, 10 Oct 2017 14:39:54 GMT",
                 "email": "user1@gmail.com",
                 "id": 3,
                 "username": "User1"
@@ -240,18 +242,18 @@ Reset a registered user's password
             "previous_page": "/admin/users?page=1&limit=2",
             "users": [
                 {
-                    "date_created": "Mon, 24 jun 2019 14:47:10 GMT",
-                    "date_modified": "Mon, 24 jun 2019 15:17:13 GMT",
+                    "date_created": "Tue, 10 Oct 2017 14:47:10 GMT",
+                    "date_modified": "Tue, 10 Oct 2017 15:17:13 GMT",
                     "email": "wick@gmail.com",
                     "id": 6,
                     "username": "Wick"
                 },
                 {
-                    "date_created": "Mon, 24 jun 2019 15:15:40 GMT",
-                    "date_modified": "Mon, 24 jun 2019 15:15:40 GMT",
-                    "email": "cherukuriraviteja7@gmail.com",
+                    "date_created": "Wed, 11 Oct 2017 15:15:40 GMT",
+                    "date_modified": "Wed, 11 Oct 2017 15:15:40 GMT",
+                    "email": "john.com",
                     "id": 7,
-                    "username": "raviteja22"
+                    "username": "John"
                 }
             ]
         }
@@ -274,11 +276,11 @@ A user with admin priviledges can get a specific user by providing their id.
 
         [
             {
-                "date_created": "Mon, 24 jun 2019 15:39:35 GMT",
-                "date_modified": "Mon, 24 jun 2019 15:39:35 GMT",
-                "email": "ravitejacherukuri779@gmail.com",
+                "date_created": "Wed, 27 Sep 2017 15:39:35 GMT",
+                "date_modified": "Wed, 27 Sep 2017 15:39:35 GMT",
+                "email": "halle@gmail.com",
                 "id": 9,
-                "username": "raviteja"
+                "username": "Halle"
             }
         ]
 
@@ -313,15 +315,15 @@ Get all shopping lists belonging to a particular user.
 
         [
             {
-                "date_created": "Mon, 24 jun 2019 15:41:36 GMT",
-                "date_modified": "Mon, 24 jun 2019 15:41:36 GMT",
+                "date_created": "Wed, 27 Sep 2017 15:41:36 GMT",
+                "date_modified": "Wed, 27 Sep 2017 15:41:36 GMT",
                 "description": "The ultimate gaming list",
                 "id": 1,
                 "name": "Games"
             },
             {
-                "date_created": "Mon, 24 jun 2019 15:41:51 GMT",
-                "date_modified": "Mon, 24 jun 2019 15:41:51 GMT",
+                "date_created": "Wed, 27 Sep 2017 15:41:51 GMT",
+                "date_modified": "Wed, 27 Sep 2017 15:41:51 GMT",
                 "description": "List description",
                 "id": 2,
                 "name": "List 2"
@@ -347,8 +349,8 @@ Create a shopping list by providing a name and a description (optional).
 + Response 201 (application/json)
 
         {
-            "date_created": "Mon, 24 jun 2019 22:07:40 GMT",
-            "date_modified": "Mon, 24 jun 2019 22:07:40 GMT",
+            "date_created": "Thu, 28 Sep 2017 22:07:40 GMT",
+            "date_modified": "Thu, 28 Sep 2017 22:07:40 GMT",
             "description": "List description",
             "id": 5,
             "name": "List 4"
@@ -372,15 +374,15 @@ Search for shopping lists matching a given criteria
 
         [
             {
-                "date_created": "Mon, 24 jun 2019 15:41:51 GMT",
-                "date_modified": "Mon, 24 jun 2019 15:41:51 GMT",
+                "date_created": "Wed, 27 Sep 2017 15:41:51 GMT",
+                "date_modified": "Wed, 27 Sep 2017 15:41:51 GMT",
                 "description": "List description",
                 "id": 2,
                 "name": "List 1"
             },
             {
-                "date_created": "Mon, 24 jun 2019 15:41:55 GMT",
-                "date_modified": "Mon, 24 jun 2019 15:41:55 GMT",
+                "date_created": "Wed, 27 Sep 2017 15:41:55 GMT",
+                "date_modified": "Wed, 27 Sep 2017 15:41:55 GMT",
                 "description": "List description",
                 "id": 3,
                 "name": "List 2"
@@ -408,15 +410,15 @@ Search for shopping lists matching a given criteria
             "previous_page": "/shopping_lists?page=1&limit=2",
             "shopping_lists": [
                 {
-                    "date_created": "Mon, 24 jun 2019 15:54:46 GMT",
-                    "date_modified": "Mon, 24 jun 2019 15:54:46 GMT",
+                    "date_created": "Mon, 20 Nov 2017 15:54:46 GMT",
+                    "date_modified": "Mon, 20 Nov 2017 15:54:46 GMT",
                     "description": "List description",
                     "id": 3,
                     "name": "List 3"
                 },
                 {
-                    "date_created": "Mon, 24 jun 2019 20:53:07 GMT",
-                    "date_modified": "Mon, 24 jun 2019 20:53:07 GMT",
+                    "date_created": "Mon, 20 Nov 2017 20:53:07 GMT",
+                    "date_modified": "Mon, 20 Nov 2017 20:53:07 GMT",
                     "description": "",
                     "id": 4,
                     "name": "List 4"
@@ -441,8 +443,8 @@ Get a specific shopping list
 + Response 200 (application/json)
 
         {
-            "date_created": "Mon, 24 jun 2019 22:07:40 GMT",
-            "date_modified": "Mon, 24 jun 2019 22:07:40 GMT",
+            "date_created": "Thu, 28 Sep 2017 22:07:40 GMT",
+            "date_modified": "Thu, 28 Sep 2017 22:07:40 GMT",
             "description": "List description",
             "id": 5,
             "name": "List 4"
@@ -508,16 +510,16 @@ Get all the items belonging to a particular shopping list.
 
         [
             {
-                "date_created": "Mon, 24 jun 2019 15:42:25 GMT",
-                "date_modified": "Mon, 24 jun 2019 15:42:25 GMT",
+                "date_created": "Wed, 27 Sep 2017 15:42:25 GMT",
+                "date_modified": "Wed, 27 Sep 2017 15:42:25 GMT",
                 "id": 1,
                 "name": "God of War",
                 "quantity": 1,
                 "unit_price": 5500
             },
             {
-                "date_created": "Mon, 24 jun 2019 15:42:32 GMT",
-                "date_modified": "Mon, 24 jun 2019 15:42:32 GMT",
+                "date_created": "Wed, 27 Sep 2017 15:42:32 GMT",
+                "date_modified": "Wed, 27 Sep 2017 15:42:32 GMT",
                 "id": 2,
                 "name": "Item 1",
                 "quantity": 1,
@@ -545,8 +547,8 @@ Create a shopping list item.
 + Response 201 (application/json)
 
         {
-            "date_created": "Mon, 24 jun 2019 00:08:36 GMT",
-            "date_modified": "Mon, 24 jun 2019 00:08:36 GMT",
+            "date_created": "Fri, 29 Sep 2017 00:08:36 GMT",
+            "date_modified": "Fri, 29 Sep 2017 00:08:36 GMT",
             "id": 5,
             "name": "Deadpool",
             "quantity": 1,
@@ -572,16 +574,16 @@ Search for shopping list items matching a given criteria
 
         [
             {
-                "date_created": "Mon, 24 jun 2019 15:42:32 GMT",
-                "date_modified": "Mon, 24 jun 2019 15:42:32 GMT",
+                "date_created": "Wed, 27 Sep 2017 15:42:32 GMT",
+                "date_modified": "Wed, 27 Sep 2017 15:42:32 GMT",
                 "id": 2,
                 "name": "Item 1",
                 "quantity": 1,
                 "unit_price": 5500
             },
             {
-                "date_created": "Mon, 24 jun 2019 15:42:36 GMT",
-                "date_modified": "Mon, 24 jun 2019 15:42:36 GMT",
+                "date_created": "Wed, 27 Sep 2017 15:42:36 GMT",
+                "date_modified": "Wed, 27 Sep 2017 15:42:36 GMT",
                 "id": 3,
                 "name": "Item 2",
                 "quantity": 1,
@@ -610,16 +612,16 @@ Search for shopping list items matching a given criteria
             "previous_page": "/shopping_lists/<list_id>/items?page=1&limit=2",
             "shopping_list_items": [
                 {
-                    "date_created": "Mon, 24 jun 2019 10:02:22 GMT",
-                    "date_modified": "Mon, 24 jun 2019 10:02:22 GMT",
+                    "date_created": "Thu, 23 Nov 2017 10:02:22 GMT",
+                    "date_modified": "Thu, 23 Nov 2017 10:02:22 GMT",
                     "id": 3,
                     "name": "Item 3",
                     "quantity": 1,
                     "unit_price": 5500
                 },
                 {
-                    "date_created": "Mon, 24 jun 2019 10:02:25 GMT",
-                    "date_modified": "Mon, 24 jun 2019 10:02:25 GMT",
+                    "date_created": "Thu, 23 Nov 2017 10:02:25 GMT",
+                    "date_modified": "Thu, 23 Nov 2017 10:02:25 GMT",
                     "id": 4,
                     "name": "Item 4",
                     "quantity": 1,
