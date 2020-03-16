@@ -6,6 +6,7 @@ import {connect} from 'react-redux';
 import {getSingleItem, editItem} from "../../actions/listItemActions";
 import FormInput from '../common/FormInput';
 import validate from '../../utils/formValidator';
+import {withRouter} from 'react-router-dom';
 
 export class EditItem extends Component {
     constructor(props, context) {
@@ -39,7 +40,8 @@ export class EditItem extends Component {
         const item_id = this.props.match.params.item_id;
 
         this.props.editItem(id, item_id, values, () => {
-            this.context.router.history.push('/shopping_lists/' + id + '/items');
+            //this.context.router.history.push('/shopping_lists/' + id + '/items');
+            this.props.history.push('/shopping_lists/' + id + '/items')
         });
     }
 
