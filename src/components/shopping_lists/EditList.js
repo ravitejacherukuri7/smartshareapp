@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import {getSingleList, editList} from '../../actions/shoppingListActions';
 import FormInput from '../common/FormInput';
 import validate from '../../utils/formValidator';
+import {withRouter} from 'react-router-dom';
 
 export class EditList extends Component {
     constructor(props, context) {
@@ -36,7 +37,9 @@ export class EditList extends Component {
         const id = this.props.match.params.id;
 
         this.props.editList(id, values, () => {
-            this.context.router.history.push('/dashboard');
+            //this.context.router.history.push('/dashboard');
+            this.props.history.push('/dashboard')
+
         });
     }
 
