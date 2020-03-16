@@ -9,7 +9,7 @@ const FriendList = ({ friends, removeFriend }) => {
         <Item.Group>
             { _.map(friends.friends.friends, friend =>
                 <Item key={friend.id}>
-                    <Item.Image size="small" src={process.env.PUBLIC_URL + '/img/avatar2.png'} />
+                    <Item.Image size="small" src={process.env.PUBLIC_URL + '/img/avatar4.png'} />
 
                     <Item.Content>
                         <Item.Header>{friend.username}</Item.Header>
