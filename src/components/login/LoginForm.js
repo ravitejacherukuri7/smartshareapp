@@ -8,6 +8,7 @@ import {login} from "../../actions/authActions";
 import FormInput from '../common/FormInput';
 import validate from '../../utils/formValidator';
 import Footer from '../common/Footer';
+import {withRouter} from 'react-router-dom';
 
 export class LoginForm extends Component {
     constructor(props, context) {
@@ -26,7 +27,8 @@ export class LoginForm extends Component {
         this.props.login(values)
             .then(() => {
                 if (this.props.loggedIn) {
-                    this.context.router.history.push('/dashboard');
+                    //this.context.router.history.push('/dashboard');
+                    this.props.history.push('/dashboard')
                 }
             });
     }
@@ -49,13 +51,13 @@ export class LoginForm extends Component {
 
         return (
             <div className="ui center aligned inverted landingContent">
-                <img src={process.env.PUBLIC_URL + '/img/img5.jpeg'} alt="background"/>
+                <img src={process.env.PUBLIC_URL + '/img/back.jpg'} alt="background"/>
                 <div className="overlay"/>
 
                 <div className="ui inverted center aligned grid">
                     <div className="ui inverted container formContainer">
                         <Form onSubmit={handleSubmit(this.onSubmit)} onChange={this.onChange}>
-                            <h1 className="ui inverted header">𝐋𝐨𝐠 𝐈𝐧</h1>
+                            <h2 className="ui inverted header">𝐋𝐨𝐠 𝐈𝐧</h2>
 
                             <FormInput
                                 type="email"
