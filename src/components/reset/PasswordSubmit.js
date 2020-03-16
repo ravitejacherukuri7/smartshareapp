@@ -7,6 +7,7 @@ import {passwordReset} from "../../actions/resetActions";
 import FormInput from '../common/FormInput';
 import validate from '../../utils/formValidator';
 import Footer from '../common/Footer';
+import {withRouter} from 'react-router-dom';
 
 export class PasswordSubmit extends Component {
     constructor(props) {
@@ -20,7 +21,8 @@ export class PasswordSubmit extends Component {
 
         this.props.passwordReset(values, token)
             .then(() => {
-                this.context.router.history.push('/login');
+                //this.context.router.history.push('/login');
+                this.props.history.push('/login')
             });
     }
 
@@ -36,7 +38,7 @@ export class PasswordSubmit extends Component {
 
         return (
             <div className="ui center aligned inverted landingContent">
-                <img src={process.env.PUBLIC_URL + '/img/img5.jpeg'} alt="background"/>
+                <img src={process.env.PUBLIC_URL + '/img/back.jpg'} alt="background"/>
                 <div className="overlay"/>
 
                 <div className="ui inverted center aligned grid">
