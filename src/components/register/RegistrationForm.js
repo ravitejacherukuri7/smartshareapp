@@ -8,6 +8,7 @@ import {register} from "../../actions/authActions";
 import FormInput from '../common/FormInput';
 import validate from '../../utils/formValidator';
 import Footer from '../common/Footer';
+import {withRouter} from 'react-router-dom';
 
 export class RegistrationForm extends Component {
     constructor(props, context) {
@@ -20,7 +21,8 @@ export class RegistrationForm extends Component {
         this.props.register(values)
             .then(() => {
                 if (this.props.registered) {
-                    this.context.router.history.push('/login');
+                    //this.context.router.history.push('/login');
+                     this.props.history.push('/login')
                 }
             });
     }
@@ -37,7 +39,7 @@ export class RegistrationForm extends Component {
 
         return(
             <div className="ui center aligned inverted landingContent">
-                <img src={process.env.PUBLIC_URL + '/img/img5.jpeg'} alt="background" />
+                <img src={process.env.PUBLIC_URL + '/img/back.jpg'} alt="background" />
                 <div className="overlay" />
 
                 <div className="ui inverted center aligned grid">
