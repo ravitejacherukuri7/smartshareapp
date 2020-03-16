@@ -8,7 +8,7 @@ const UserList = ({users, handleAdd}) => {
         <Item.Group>
             {_.map(users.friends, user =>
                 <Item key={user.id}>
-                    <Item.Image size="small" src={process.env.PUBLIC_URL + '/img/avatar2.png'}/>
+                    <Item.Image size="small" src={process.env.PUBLIC_URL + '/img/avatar4.png'}/>
 
                     <Item.Content>
                         <Item.Header>{user.username}</Item.Header>
