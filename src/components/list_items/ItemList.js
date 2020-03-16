@@ -3,6 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import DeleteItem from './DeleteItem';
+import Search from '../common/Search';
 
 const ItemList = ({ id, listItems, handleDelete }) => {
     let items = '';
@@ -27,6 +28,7 @@ const ItemList = ({ id, listItems, handleDelete }) => {
     }
     return (
         <div>
+         <Search/>
             <h4>Shopping List Items</h4>
 
             <table className="ui purple table">
