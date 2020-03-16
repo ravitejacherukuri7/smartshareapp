@@ -7,6 +7,7 @@ import {connect} from 'react-redux';
 import {createList} from "../../actions/shoppingListActions";
 import FormInput from '../common/FormInput';
 import validate from '../../utils/formValidator';
+import {withRouter} from 'react-router-dom';
 
 export class CreateList extends Component {
     constructor(props) {
@@ -17,7 +18,8 @@ export class CreateList extends Component {
 
     onSubmit(values) {
         this.props.createList(values, () => {
-            this.props.history.push('/dashboard');
+            //this.props.history.push('/dashboard');
+            this.props.history.push('/dashboard')
         });
     }
 
