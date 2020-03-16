@@ -3010,7 +3010,7 @@ body .ui.inverted::-webkit-scrollbar-thumb:hover {
 
 .ui.inverted.purple.button:active,
 .ui.inverted.purple.buttons .button:active {
-    background-color: #cf40ff
+    background-color: #808B96
 }
 
 .ui.inverted.purple.basic.button,
@@ -3024,7 +3024,7 @@ body .ui.inverted::-webkit-scrollbar-thumb:hover {
 .ui.inverted.purple.basic.button:hover,
 .ui.inverted.purple.basic.buttons .button:hover,
 .ui.inverted.purple.buttons .basic.button:hover {
-    box-shadow: 0 0 0 2px #d65aff inset!important;
+    box-shadow: 0 0 0 2px #808B96 inset!important;
     color: #dc73ff!important
 }
 
