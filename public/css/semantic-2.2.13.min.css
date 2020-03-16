@@ -317,15 +317,18 @@ h5 {
     margin: calc(2rem - .14285714em) 0 1rem;
     font-weight: 700;
     padding: 0
+    
 }
 
 h1 {
     min-height: 1rem;
-    font-size: 2rem
+    font-size: 2rem;
+    color: black
 }
 
 h2 {
     font-size: 1.71428571rem
+
 }
 
 h3 {
@@ -359,6 +362,7 @@ h5:last-child {
 p {
     margin: 0 0 1em;
     line-height: 1.4285em
+   
 }
 
 p:first-child {
@@ -370,12 +374,12 @@ p:last-child {
 }
 
 a {
-    color: #4183c4;
+    color: #99A3A4 ;
     text-decoration: none
 }
 
 a:hover {
-    color: #1e70bf;
+    color: #99A3A4;
     text-decoration: none
 }
 
@@ -1820,10 +1824,12 @@ body .ui.inverted::-webkit-scrollbar-thumb:hover {
 
 .ui.grey.button,
 .ui.grey.buttons .button {
-    background-color: #767676;
+    background-color: #808B96;
     color: #fff;
     text-shadow: none;
-    background-image: none
+    background-image: none;
+    text-align: center;
+    width: 15rem;
 }
 
 .ui.grey.button {
@@ -1832,21 +1838,21 @@ body .ui.inverted::-webkit-scrollbar-thumb:hover {
 
 .ui.grey.button:hover,
 .ui.grey.buttons .button:hover {
-    background-color: #838383;
+    background-color: #808B96;
     color: #fff;
     text-shadow: none
 }
 
 .ui.grey.button:focus,
 .ui.grey.buttons .button:focus {
-    background-color: #8a8a8a;
+    background-color: #808B96;
     color: #fff;
     text-shadow: none
 }
 
 .ui.grey.button:active,
 .ui.grey.buttons .button:active {
-    background-color: #909090;
+    background-color: #808B96;
     color: #fff;
     text-shadow: none
 }
@@ -1855,8 +1861,8 @@ body .ui.inverted::-webkit-scrollbar-thumb:hover {
 .ui.grey.button .active.button:active,
 .ui.grey.buttons .active.button,
 .ui.grey.buttons .active.button:active {
-    background-color: #696969;
-    color: #fff;
+    background-color: #808B96;
+    color:#fff;
     text-shadow: none
 }
 
@@ -2885,14 +2891,14 @@ body .ui.inverted::-webkit-scrollbar-thumb:hover {
 .ui.inverted.violet.basic.button:active,
 .ui.inverted.violet.basic.buttons .button:active,
 .ui.inverted.violet.buttons .basic.button:active {
-    box-shadow: 0 0 0 2px #7860f9 inset!important;
+    box-shadow: 0 0 0 2px #ECF0F1 inset!important;
     color: #a291fb!important
 }
 
 .ui.purple.button,
 .ui.purple.buttons .button {
-    background-color: #767676;
-    color: #fff;
+    background-color: #808B96;
+    color:#fff;
     text-shadow: none;
     background-image: none
 }
@@ -2903,21 +2909,21 @@ body .ui.inverted::-webkit-scrollbar-thumb:hover {
 
 .ui.purple.button:hover,
 .ui.purple.buttons .button:hover {
-    background-color: #9627ba;
+    background-color: #767676;
     color: #fff;
     text-shadow: none
 }
 
 .ui.purple.button:focus,
 .ui.purple.buttons .button:focus {
-    background-color: #8f1eb4;
+    background-color: #767676;
     color: #fff;
     text-shadow: none
 }
 
 .ui.purple.button:active,
 .ui.purple.buttons .button:active {
-    background-color: #82299f;
+    background-color: #767676;
     color: #fff;
     text-shadow: none
 }
@@ -2970,9 +2976,9 @@ body .ui.inverted::-webkit-scrollbar-thumb:hover {
 
 .ui.inverted.purple.button,
 .ui.inverted.purple.buttons .button {
-    background-color: transparent;
-    box-shadow: 0 0 0 2px #dc73ff inset!important;
-    color: #dc73ff
+    background-color: #808B96;
+    box-shadow: 0 0 0 2px #808B96 inset!important;
+    color: #fff
 }
 
 .ui.inverted.purple.button.active,
@@ -2989,17 +2995,17 @@ body .ui.inverted::-webkit-scrollbar-thumb:hover {
 
 .ui.inverted.purple.button:hover,
 .ui.inverted.purple.buttons .button:hover {
-    background-color: #d65aff
+    background-color: #808B96
 }
 
 .ui.inverted.purple.button:focus,
 .ui.inverted.purple.buttons .button:focus {
-    background-color: #d24aff
+    background-color: #808B96
 }
 
 .ui.inverted.purple.active.button,
 .ui.inverted.purple.buttons .active.button {
-    background-color: #d65aff
+    background-color: #808B96
 }
 
 .ui.inverted.purple.button:active,
@@ -19239,29 +19245,29 @@ ol.ui.horizontal.list li:before {
 .ui.inverted.menu a.item:hover,
 .ui.link.inverted.menu .item:hover {
     background: rgba(255, 255, 255, .08);
-    color: #fff
+    color: black
 }
 
 .ui.vertical.inverted.menu .item .menu .link.item:hover,
 .ui.vertical.inverted.menu .item .menu a.item:hover {
     background: 0 0;
-    color: #fff
+    color: black
 }
 
 .ui.inverted.menu .link.item:active,
 .ui.inverted.menu a.item:active {
     background: rgba(255, 255, 255, .08);
-    color: #fff
+    color: black
 }
 
 .ui.inverted.menu .active.item {
     background: rgba(255, 255, 255, .15);
-    color: #fff!important
+    color: black!important
 }
 
 .ui.inverted.vertical.menu .item .menu .active.item {
     background: 0 0;
-    color: #fff
+    color: black
 }
 
 .ui.inverted.pointing.menu .active.item:after {
