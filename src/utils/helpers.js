@@ -3,6 +3,7 @@ import { notify } from 'react-notify-toast';
 //export const ROOT_URL = 'https://smartshareapp-shopping-list-api.herokuapp.com/v1';
 export const ROOT_URL = 'http://localhost:5000/v1';
 
+
 export function setAuthorizationToken(token) {
     if (token) {
         axios.defaults.headers.common['x-access-token'] = token;
